@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "356250170152",
+    "firebase_url": "https://cookingbond-2017.firebaseio.com",
+    "project_id": "cookingbond-2017",
+    "storage_bucket": "cookingbond-2017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356250170152:android:220ce487991cb833",
+        "android_client_info": {
+          "package_name": "com.sweetheart.cookingbond"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356250170152-7sldd2dhso6ssvv9dgh7vhnamh2i5tq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sweetheart.cookingbond",
+            "certificate_hash": "c7dbccccb9e6b72f5080dc98bb4af82adb1a88c3"
+          }
+        },
+        {
+          "client_id": "356250170152-q9e64ua89aavpqgeirt351638taeklho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA49t_QB7AhZtGayI01j87dla2UdF4RULg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356250170152-q9e64ua89aavpqgeirt351638taeklho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
