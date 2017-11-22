@@ -16,7 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity
+            android:name=".CookMainActivity"
+            android:label="@string/title_activity_cook_main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AddDishActivity"
+            android:parentActivityName=".CookMainActivity"/>
     </application>
 
 </manifest>
