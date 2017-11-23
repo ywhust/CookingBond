@@ -48,7 +48,6 @@ public class AddDishActivity extends AppCompatActivity {
     private DatabaseReference mCookRef;
     private StorageReference mImageRef;
 
-    private List<String> mAllDishes;
     private Bitmap mSelectImage;
 
     @Override
@@ -71,12 +70,6 @@ public class AddDishActivity extends AppCompatActivity {
         mDishRef = FirebaseDatabase.getInstance().getReference("dishes/");
         mCookRef = FirebaseDatabase.getInstance().getReference("cooks/" + mUser.getUid() + "/allDishes/");
         mImageRef = FirebaseStorage.getInstance().getReference("images/dishes");
-        mAllDishes = new ArrayList<>();
-
-//        if (mUser != null) {
-//            mCookRef = FirebaseDatabase.getInstance().getReference("cooks/"
-//                    + mUser.getUid() + "/allDishes/");
-//        }
     }
 
     public void selectPicture(View view) {
@@ -127,7 +120,7 @@ public class AddDishActivity extends AppCompatActivity {
             mDishRef.child(key).setValue(dish.toMap());
 
             // Add the new dish id to dishes list
-            mCookRef.child(mName.getText().toString()).setValue(key);
+            mCookRef.child(key).setValue(mName.getText().toString());
         } else {
             Toast.makeText(AddDishActivity.this, "You need to login first!",
                     Toast.LENGTH_SHORT).show();

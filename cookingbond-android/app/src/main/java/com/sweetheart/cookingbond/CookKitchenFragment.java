@@ -50,7 +50,7 @@ public class CookKitchenFragment extends Fragment {
             mCookRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    String dishId = dataSnapshot.getValue(String.class);
+                    String dishId = dataSnapshot.getKey();
                     mDishRef.child(dishId).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
