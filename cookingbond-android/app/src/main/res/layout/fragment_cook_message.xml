@@ -5,7 +5,7 @@
     tools:context="com.sweetheart.cookingbond.CookMainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/kitchen_content"
+        android:id="@+id/message_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

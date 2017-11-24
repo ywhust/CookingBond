@@ -126,7 +126,7 @@ public class CookMainActivity extends AppCompatActivity {
                 case 0:
                     return new CookKitchenFragment();
                 case 1:
-                    return new CookKitchenFragment();
+                    return new CookMessageFragment();
                 case 2:
                     return new CookKitchenFragment();
             }
