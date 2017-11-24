@@ -1,0 +1,118 @@
+{
+    "users": {
+        "uid1": {
+            "name": "Yifei", //initial
+            "gender": "female", //initial
+            "age": 23, //initial
+            "email": "wangyf1229@gmail.com", //initial
+            "phone": "", //initial
+            "photo": "", //initial
+            "lastStatus": "", //cookoreat
+            // "hasTransporation":true,
+            "ratingCook": 0,
+            "ratingEater": 0,
+            "transactions": ["tid1", "tid2"]
+        },
+    },
+
+    "contacts_cook": {
+        "uid1": {
+            "uid2": "cid12", // Corresponding conversation id
+            "uid3": "cid13"
+        },
+        "uid2": {
+            "uid1": "cid21",
+            "uid3": "cid23"
+        },
+        "uid3": {
+            "uid1": "cid31",
+            "uid2": "cid32"
+        }
+    },
+
+    "contacts_eater": {
+        "uid2": {
+            "uid1":"cid12",
+            "uid3":"cid32"
+        }
+    },
+
+    "messages": {
+        "cid12": {
+            "mid1": {
+                "to": "uid1",
+                "from": "uid2",
+                "message": "Hi!",
+                "timestamp": "1459361875337"
+            },
+            "mid2": {}
+        },
+        "cid13": {
+            "mid1": {},
+            "mid2": {}
+        }
+    },
+
+    "notifications": {
+        "messages": {
+            "mid1": {
+                "to": "uid1",
+                "from": "uid2",
+                "message": "Hi!",
+                "timestamp": "1459361875337"
+            }
+        }
+    },
+
+    "cooks": {
+        "uid1": {
+            "location": {
+                "lat": -135.9,
+                "lng": 78.9
+            },
+            "availableStatus": "",
+            "allDishes": {
+                "did1": "did1Name",
+                "did2": "did2Name",
+                "did3": "did3Name"
+            },
+            "availableDishes": {
+                "did1": "did1Name",
+                "did2": "did2Name",
+                "did3": "did3Name"
+            },
+            "price": "$",
+            "label": ["chinese","american"]
+        }
+    },
+
+    "dishes": {
+        "did1": {
+            "name": "",
+            "picture": "",
+            "description": "",
+            "flavor": "",
+            "price": "",
+            "cook": "" //record the uid of cook
+        },
+        "did2": {
+            "name": "",
+            "picture": "",
+            "description": "",
+            "flavor": "",
+            "price": "",
+            "cook": ""
+        }
+    },
+
+    "transaction": {
+        "tid1": {
+            "cook": "uid1",
+            "eater": "uid2",
+            "dish": "did1",
+            "amount": "15.5",
+            "time": "", // the time the transaction is generated
+            "status": ""
+        }
+    }
+}
