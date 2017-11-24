@@ -1,4 +1,4 @@
-package com.sweetheart.cookingbond.models;
+package com.sweetheart.cookingbond.classes;
 
 import com.google.firebase.database.Exclude;
 

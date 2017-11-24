@@ -1,10 +1,9 @@
-package com.sweetheart.cookingbond;
+package com.sweetheart.cookingbond.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +16,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.sweetheart.cookingbond.models.Contact;
-import com.sweetheart.cookingbond.models.Message;
-import com.sweetheart.cookingbond.models.User;
+import com.sweetheart.cookingbond.R;
+import com.sweetheart.cookingbond.adapters.ContactAdapter;
+import com.sweetheart.cookingbond.classes.Contact;
+import com.sweetheart.cookingbond.classes.Message;
+import com.sweetheart.cookingbond.classes.User;
 
 import java.util.ArrayList;
 import java.util.List;

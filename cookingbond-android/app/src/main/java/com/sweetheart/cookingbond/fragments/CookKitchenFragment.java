@@ -1,4 +1,4 @@
-package com.sweetheart.cookingbond;
+package com.sweetheart.cookingbond.fragments;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -16,7 +16,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.sweetheart.cookingbond.models.Dish;
+import com.sweetheart.cookingbond.R;
+import com.sweetheart.cookingbond.adapters.DishAdapter;
+import com.sweetheart.cookingbond.classes.Dish;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,13 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.sweetheart.cookingbond.models.Dish;
+import com.sweetheart.cookingbond.classes.Dish;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddDishActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.sweetheart.cookingbond;
+package com.sweetheart.cookingbond.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -13,7 +13,8 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.sweetheart.cookingbond.models.Dish;
+import com.sweetheart.cookingbond.R;
+import com.sweetheart.cookingbond.classes.Dish;
 
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         if (mContext == null) {
             mContext = parent.getContext();
         }
-        View view = LayoutInflater.from(mContext).inflate(R.layout.dish_item, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.cardview_dish, parent, false);
         return new ViewHolder(view);
     }
 
