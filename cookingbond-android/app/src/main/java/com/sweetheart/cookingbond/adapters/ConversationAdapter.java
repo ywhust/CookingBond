@@ -1,6 +1,7 @@
 package com.sweetheart.cookingbond.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sweetheart.cookingbond.CookChatActivity;
 import com.sweetheart.cookingbond.R;
-import com.sweetheart.cookingbond.classes.Contact;
+import com.sweetheart.cookingbond.classes.Conversation;
 
 import java.util.List;
 
@@ -18,9 +20,9 @@ import java.util.List;
  * Created by ywu on 11/23/17.
  */
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
+public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder> {
     private Context mContext;
-    private List<Contact> mContactList;
+    private List<Conversation> mConversationList;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
@@ -39,8 +41,8 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    public ContactAdapter(List<Contact> contactList) {
-        mContactList = contactList;
+    public ConversationAdapter(List<Conversation> conversationList) {
+        mConversationList = conversationList;
     }
 
     @Override
@@ -48,13 +50,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         if (mContext == null) {
             mContext = parent.getContext();
         }
-        View view = LayoutInflater.from(mContext).inflate(R.layout.cardview_contact, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.cardview_conversation, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
-                Contact contact = mContactList.get(position);
+                Conversation conversation = mConversationList.get(position);
+                Intent intent = new Intent(mContext, CookChatActivity.class);
+                intent.putExtra("conversationId", conversation.cid);
+                intent.putExtra("myId", conversation.myId);
+                intent.putExtra("contactId", conversation.contactId);
+                intent.putExtra("contactName", conversation.contactName);
+                intent.putExtra("contactPhoto", conversation.contactPhoto);
+                mContext.startActivity(intent);
             }
         });
         return holder;
@@ -62,16 +71,16 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Contact contact = mContactList.get(position);
-        holder.name.setText(contact.name);
-        holder.message.setText(contact.lastMessage);
-        holder.time.setText(contact.lastContactTime);
+        Conversation conversation = mConversationList.get(position);
+        holder.name.setText(conversation.contactName);
+        holder.message.setText(conversation.lastMessage);
+        holder.time.setText(conversation.lastContactTime);
 //        StorageReference imageRef = FirebaseStorage.getInstance().getReference(contact.photo);
 //        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.photo);
     }
 
     @Override
     public int getItemCount() {
-        return mContactList.size();
+        return mConversationList.size();
     }
 }

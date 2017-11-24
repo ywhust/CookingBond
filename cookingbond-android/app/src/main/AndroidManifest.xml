@@ -23,6 +23,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".AddDishActivity"
+            android:parentActivityName=".CookMainActivity" />
+        <activity
+            android:name=".CookChatActivity"
             android:parentActivityName=".CookMainActivity"/>
     </application>
 

@@ -17,8 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sweetheart.cookingbond.R;
-import com.sweetheart.cookingbond.adapters.ContactAdapter;
-import com.sweetheart.cookingbond.classes.Contact;
+import com.sweetheart.cookingbond.adapters.ConversationAdapter;
+import com.sweetheart.cookingbond.classes.Conversation;
 import com.sweetheart.cookingbond.classes.Message;
 import com.sweetheart.cookingbond.classes.User;
 
@@ -30,12 +30,12 @@ import java.util.List;
  */
 
 public class CookMessageFragment extends Fragment {
-    private List<Contact> mContactList;
+    private List<Conversation> mConversationList;
 
-    private ContactAdapter mAdapter;
+    private ConversationAdapter mAdapter;
 
     private FirebaseUser mUser;
-    private DatabaseReference mContactRef;
+    private DatabaseReference mConversationRef;
 
     public CookMessageFragment() {}
 
@@ -43,30 +43,30 @@ public class CookMessageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mContactList = new ArrayList<>();
-        mAdapter = new ContactAdapter(mContactList);
+        mConversationList = new ArrayList<>();
+        mAdapter = new ConversationAdapter(mConversationList);
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser != null) {
-            mContactRef = FirebaseDatabase.getInstance().getReference("contacts_cook/" + mUser.getUid());
-            mContactRef.addChildEventListener(new ChildEventListener() {
+            mConversationRef = FirebaseDatabase.getInstance().getReference("contacts_cook/" + mUser.getUid());
+            mConversationRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    final String customerId = dataSnapshot.getKey();
-                    final String contactId = dataSnapshot.getValue(String.class);
-                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users/" + customerId);
+                    final String contactId = dataSnapshot.getKey();
+                    final String conversationId = dataSnapshot.getValue(String.class);
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users/" + contactId);
                     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            final User user = dataSnapshot.getValue(User.class);
-                            DatabaseReference msgRef = FirebaseDatabase.getInstance().getReference("messages/" + contactId);
+                            final User customer = dataSnapshot.getValue(User.class);
+                            DatabaseReference msgRef = FirebaseDatabase.getInstance().getReference("messages/" + conversationId);
                             msgRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     Message msg = dataSnapshot.getValue(Message.class);
-                                    Contact contact = new Contact(contactId, mUser.getUid(), customerId,
-                                            user.name, user.photo, msg.message, msg.timestamp);
-                                    mContactList.add(contact);
+                                    Conversation conversation = new Conversation(conversationId, mUser.getUid(), contactId,
+                                            customer.name, customer.photo, msg.message, msg.timestamp);
+                                    mConversationList.add(conversation);
                                     mAdapter.notifyDataSetChanged();
                                 }
 
