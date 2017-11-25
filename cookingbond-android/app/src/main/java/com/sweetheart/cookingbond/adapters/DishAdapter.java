@@ -6,11 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.sweetheart.cookingbond.R;
@@ -30,12 +36,14 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         CardView cardView;
         ImageView dishImage;
         TextView dishName;
+        Switch availableSwitch;
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
             dishImage = (ImageView) view.findViewById(R.id.dish_image);
             dishName = (TextView) view.findViewById(R.id.dish_name);
+            availableSwitch = (Switch) view.findViewById(R.id.dish_available_switch);
         }
     }
 
@@ -49,7 +57,25 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
             mContext = parent.getContext();
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.cardview_dish, parent, false);
-        return new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
+        holder.availableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                int position = holder.getAdapterPosition();
+                Dish dish = mDishList.get(position);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    DatabaseReference cookRef = FirebaseDatabase.getInstance()
+                            .getReference("cooks/" + user.getUid() + "/availableDishes/");
+                    if (isChecked) {
+                        cookRef.child(dish.dishId).setValue(dish.name);
+                    } else {
+                        cookRef.child(dish.dishId).removeValue();
+                    }
+                }
+            }
+        });
+        return holder;
     }
 
     @Override

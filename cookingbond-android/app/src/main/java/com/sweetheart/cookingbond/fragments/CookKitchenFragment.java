@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,6 +59,7 @@ public class CookKitchenFragment extends Fragment {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Dish dish = dataSnapshot.getValue(Dish.class);
+                            dish.dishId = dataSnapshot.getKey();
                             mDishList.add(dish);
                             mAdapter.notifyDataSetChanged();
                         }
@@ -98,9 +101,23 @@ public class CookKitchenFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.kitchen_content);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
-//        DishAdapter adapter = new DishAdapter(mDishList);
-//        recyclerView.setAdapter(adapter);
         recyclerView.setAdapter(mAdapter);
+        Switch availableSwitch = (Switch) rootView.findViewById(R.id.cook_available_switch);
+        availableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    DatabaseReference statusRef = FirebaseDatabase.getInstance()
+                            .getReference("cooks/" + user.getUid() + "/availableStatus/");
+                    if (isChecked) {
+                        statusRef.setValue("true");
+                    } else {
+                        statusRef.setValue("false");
+                    }
+                }
+            }
+        });
         return rootView;
     }
 }

@@ -70,7 +70,7 @@ public class CookMainActivity extends AppCompatActivity {
                 } else {
                     fab.show();
                 }
-                getSupportActionBar().setTitle(titles[tab.getPosition()]);
+                getSupportActionBar().setTitle("My " + titles[tab.getPosition()]);
             }
 
             @Override

@@ -10,6 +10,7 @@ import java.util.Map;
  */
 
 public class Dish {
+    public String dishId;
     public String cook;
     public String name;
     public String flavor;
