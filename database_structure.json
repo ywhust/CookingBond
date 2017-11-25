@@ -11,7 +11,11 @@
             // "hasTransporation":true,
             "ratingCook": 0,
             "ratingEater": 0,
-            "transactions": ["tid1", "tid2"]
+            "transactions": ["tid1", "tid2"],
+            "notifications": {
+                "tokens1": true,
+                "tokens2": true
+            }
         },
     },
 
@@ -50,17 +54,6 @@
         "cid13": {
             "mid1": {},
             "mid2": {}
-        }
-    },
-
-    "notifications": {
-        "messages": {
-            "mid1": {
-                "to": "uid1",
-                "from": "uid2",
-                "message": "Hi!",
-                "timestamp": "1459361875337"
-            }
         }
     },
 
