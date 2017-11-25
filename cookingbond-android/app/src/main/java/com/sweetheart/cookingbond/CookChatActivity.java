@@ -54,6 +54,8 @@ public class CookChatActivity extends AppCompatActivity {
         mContactName = intent.getStringExtra("contactName");
         mContactPhoto = intent.getStringExtra("contactPhoto");
 
+        getSupportActionBar().setTitle(mContactName);
+
         mMessageRef = FirebaseDatabase.getInstance().getReference("messages/" + mConversationId);
 
         // display recycler view
