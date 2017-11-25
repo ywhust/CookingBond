@@ -11,6 +11,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +26,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class SignInActivity extends AppCompatActivity {
     private static final String TAG = "SignInActivity";
 
     private EditText mEmail;
     private EditText mPassword;
+    private Button mSignIn;
     private TextView mSignUp;
 
     private FirebaseAuth mAuth;
@@ -43,6 +46,7 @@ public class SignInActivity extends AppCompatActivity {
 
         mEmail = (EditText) findViewById(R.id.sign_in_email);
         mPassword = (EditText) findViewById(R.id.sign_in_password);
+        mSignIn = (Button) findViewById(R.id.sign_in_button);
         mSignUp = (TextView) findViewById(R.id.sign_up_link);
 
         // Make part of the text in TextView clickable
@@ -72,9 +76,14 @@ public class SignInActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    // Get token
+                    String token = FirebaseInstanceId.getInstance().getToken();
                     DatabaseReference userRef = FirebaseDatabase.getInstance()
-                            .getReference("/users/" + user.getUid() + "/lastStatus/");
-                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            .getReference("/users/" + user.getUid());
+                    if (token != null) {
+                        userRef.child("notificationTokens").child(token).setValue(true);
+                    }
+                    userRef.child("lastStatus").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String status = dataSnapshot.getValue(String.class);
@@ -96,6 +105,29 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         };
+
+        mSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = mEmail.getText().toString();
+                String password = mPassword.getText().toString();
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.w(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "signInWithEmail:failed", task.getException());
+                            Toast.makeText(SignInActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -112,23 +144,23 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-    public void signIn(View view) {
-        String email = mEmail.getText().toString();
-        String password = mPassword.getText().toString();
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.w(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-                // If sign in fails, display a message to the user. If sign in succeeds
-                // the auth state listener will be notified and logic to handle the
-                // signed in user can be handled in the listener.
-                if (!task.isSuccessful()) {
-                    Log.w(TAG, "signInWithEmail:failed", task.getException());
-                    Toast.makeText(SignInActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+//    public void signIn(View view) {
+//        String email = mEmail.getText().toString();
+//        String password = mPassword.getText().toString();
+//        mAuth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                Log.w(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+//                // If sign in fails, display a message to the user. If sign in succeeds
+//                // the auth state listener will be notified and logic to handle the
+//                // signed in user can be handled in the listener.
+//                if (!task.isSuccessful()) {
+//                    Log.w(TAG, "signInWithEmail:failed", task.getException());
+//                    Toast.makeText(SignInActivity.this, "Authentication failed.",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
 }

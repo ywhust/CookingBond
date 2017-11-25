@@ -27,7 +27,10 @@
         <activity
             android:name=".CookChatActivity"
             android:parentActivityName=".CookMainActivity" />
-        <activity android:name=".EaterMainActivity"></activity>
+        <activity
+            android:name=".EaterMainActivity"
+            android:label="@string/title_activity_eater_main"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
