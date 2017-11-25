@@ -15,6 +15,7 @@ import android.view.View;
 
 import com.sweetheart.cookingbond.fragments.CookKitchenFragment;
 import com.sweetheart.cookingbond.fragments.CookMessageFragment;
+import com.sweetheart.cookingbond.fragments.CookSettingFragment;
 
 public class CookMainActivity extends AppCompatActivity {
 
@@ -32,6 +33,8 @@ public class CookMainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    private String[] titles = {"Kitchen", "Message", "Setting"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,7 @@ public class CookMainActivity extends AppCompatActivity {
                 } else {
                     fab.show();
                 }
+                getSupportActionBar().setTitle(titles[tab.getPosition()]);
             }
 
             @Override
@@ -124,7 +128,7 @@ public class CookMainActivity extends AppCompatActivity {
                 case 1:
                     return new CookMessageFragment();
                 case 2:
-                    return new CookKitchenFragment();
+                    return new CookSettingFragment();
             }
             return null;
         }
