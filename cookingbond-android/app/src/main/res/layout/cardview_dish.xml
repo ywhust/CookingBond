@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/dish_image"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop" />
 
         <TextView

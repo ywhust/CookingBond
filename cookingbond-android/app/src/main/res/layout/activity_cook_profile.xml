@@ -63,6 +63,7 @@
         android:layout_margin="16dp"
         android:src="@android:drawable/ic_dialog_email"
         android:backgroundTint="@android:color/holo_blue_dark"
+        app:borderWidth="0dp"
         app:layout_anchor="@id/cook_profile_app_bar"
         app:layout_anchorGravity="bottom|end" />
 
