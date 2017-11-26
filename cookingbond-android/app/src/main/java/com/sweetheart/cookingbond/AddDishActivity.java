@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -29,6 +32,10 @@ import com.sweetheart.cookingbond.classes.Dish;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class AddDishActivity extends AppCompatActivity {
 
@@ -70,7 +77,7 @@ public class AddDishActivity extends AppCompatActivity {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mDishRef = FirebaseDatabase.getInstance().getReference("dishes/");
-        mCookRef = FirebaseDatabase.getInstance().getReference("cooks/" + mUser.getUid() + "/allDishes/");
+        mCookRef = FirebaseDatabase.getInstance().getReference("cooks/" + mUser.getUid());
         mImageRef = FirebaseStorage.getInstance().getReference("images/dishes");
     }
 
@@ -122,7 +129,22 @@ public class AddDishActivity extends AppCompatActivity {
             mDishRef.child(key).setValue(dish.toMap());
 
             // Add the new dish id to dishes list
-            mCookRef.child(key).setValue(mName.getText().toString());
+            mCookRef.child("allDishes").child(key).setValue(mName.getText().toString());
+            mCookRef.child("label").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    List<String> label = (List<String>) dataSnapshot.getValue();
+                    Set<String> set = new HashSet<>(label);
+                    set.add(mFlavor.getText().toString());
+                    label = new ArrayList<>(set);
+                    mCookRef.child("label").setValue(label);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         } else {
             Toast.makeText(AddDishActivity.this, "You need to login first!",
                     Toast.LENGTH_SHORT).show();

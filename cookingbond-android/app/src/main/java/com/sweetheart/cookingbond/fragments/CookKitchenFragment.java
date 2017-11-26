@@ -102,14 +102,27 @@ public class CookKitchenFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        Switch availableSwitch = (Switch) rootView.findViewById(R.id.cook_available_switch);
+        final Switch availableSwitch = (Switch) rootView.findViewById(R.id.cook_available_switch);
+        final DatabaseReference statusRef = FirebaseDatabase.getInstance()
+                .getReference("cooks/" + mUser.getUid() + "/availableStatus/");
+        statusRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String status = dataSnapshot.getValue(String.class);
+                if (status.equals("true")) {
+                    availableSwitch.setChecked(true);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         availableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user != null) {
-                    DatabaseReference statusRef = FirebaseDatabase.getInstance()
-                            .getReference("cooks/" + user.getUid() + "/availableStatus/");
+                if (mUser != null) {
                     if (isChecked) {
                         statusRef.setValue("true");
                     } else {

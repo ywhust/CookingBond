@@ -35,7 +35,9 @@
                 android:id="@+id/add_dish_picture"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="center"
+                android:clickable="true"
+                android:onClick="selectPicture"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/dish_background" />
 
             <EditText
@@ -64,12 +66,12 @@
                 android:id="@+id/add_dish_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="Enter the price"
-                android:inputType="number" />
+                android:inputType="number|numberSigned|numberDecimal" />
 
             <EditText
                 android:id="@+id/add_dish_description"
@@ -86,9 +88,10 @@
                 android:id="@+id/add_dish_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:onClick="addDish"
                 android:text="Submit" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

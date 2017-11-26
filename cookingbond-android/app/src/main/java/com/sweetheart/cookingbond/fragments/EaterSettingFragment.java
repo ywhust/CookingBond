@@ -108,7 +108,7 @@ public class EaterSettingFragment extends Fragment {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mUserRef.child("lastStatus").setValue("eater");
+                mUserRef.child("lastStatus").setValue("cook");
                 startActivity(new Intent(getActivity(), CookMainActivity.class));
             }
         });
