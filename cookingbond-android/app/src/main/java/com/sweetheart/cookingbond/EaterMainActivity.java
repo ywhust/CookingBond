@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.sweetheart.cookingbond.fragments.EaterExploreFragment;
 import com.sweetheart.cookingbond.fragments.EaterMessageFragment;
+import com.sweetheart.cookingbond.fragments.EaterSettingFragment;
 
 public class EaterMainActivity extends AppCompatActivity {
 
@@ -93,7 +94,7 @@ public class EaterMainActivity extends AppCompatActivity {
                 case 1:
                     return new EaterMessageFragment();
                 case 2:
-                    return new EaterExploreFragment();
+                    return new EaterSettingFragment();
             }
             return null;
         }
@@ -112,7 +113,7 @@ public class EaterMainActivity extends AppCompatActivity {
                 case 1:
                     return "Message";
                 case 2:
-                    return "history";
+                    return "History";
             }
             return null;
         }
