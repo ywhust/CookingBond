@@ -25,12 +25,13 @@
             android:name=".AddDishActivity"
             android:parentActivityName=".CookMainActivity" />
         <activity
-            android:name=".CookChatActivity"
-            android:parentActivityName=".CookMainActivity" />
+            android:name=".ChatActivity" />
         <activity
             android:name=".EaterMainActivity"
             android:label="@string/title_activity_eater_main"
             android:theme="@style/AppTheme" />
+        <activity android:name=".CookProfileActivity"
+            android:parentActivityName=".EaterMainActivity"/>
     </application>
 
 </manifest>

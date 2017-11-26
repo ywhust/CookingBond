@@ -54,7 +54,7 @@ public class EaterExploreFragment extends Fragment {
             mCookRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    String cookId = dataSnapshot.getKey();
+                    final String cookId = dataSnapshot.getKey();
                     HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
                     if (map.get("availableStatus").equals("true")) {
                         final List<String> dishIdList = new ArrayList<>(((Map) map.get("availableDishes")).keySet());
@@ -66,7 +66,7 @@ public class EaterExploreFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 User user = dataSnapshot.getValue(User.class);
-                                Cook cook = new Cook(user, labels, dishIdList);
+                                Cook cook = new Cook(user, cookId, labels, dishIdList);
                                 mCookList.add(cook);
                                 mAdapter.notifyItemInserted(mCookList.size() - 1);
                             }

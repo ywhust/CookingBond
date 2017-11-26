@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sweetheart.cookingbond.CookChatActivity;
+import com.sweetheart.cookingbond.ChatActivity;
 import com.sweetheart.cookingbond.R;
 import com.sweetheart.cookingbond.classes.Conversation;
 
@@ -57,7 +57,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Conversation conversation = mConversationList.get(position);
-                Intent intent = new Intent(mContext, CookChatActivity.class);
+                Intent intent = new Intent(mContext, ChatActivity.class);
                 intent.putExtra("conversationId", conversation.cid);
                 intent.putExtra("myId", conversation.myId);
                 intent.putExtra("contactId", conversation.contactId);

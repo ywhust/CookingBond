@@ -21,7 +21,7 @@ import com.sweetheart.cookingbond.classes.Message;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CookChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
     private String mConversationId;
     private String mMyId;

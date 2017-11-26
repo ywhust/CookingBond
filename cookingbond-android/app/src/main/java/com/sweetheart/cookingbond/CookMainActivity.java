@@ -147,7 +147,7 @@ public class CookMainActivity extends AppCompatActivity {
                 case 1:
                     return "Message";
                 case 2:
-                    return "History";
+                    return "Setting";
             }
             return null;
         }

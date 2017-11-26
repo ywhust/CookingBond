@@ -1,6 +1,7 @@
 package com.sweetheart.cookingbond.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.sweetheart.cookingbond.CookProfileActivity;
 import com.sweetheart.cookingbond.R;
 import com.sweetheart.cookingbond.classes.Cook;
 
@@ -65,6 +67,18 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.cardview_cook, parent, false);
         final ViewHolder holder = new ViewHolder(view);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                Cook cook = mCookList.get(position);
+                Intent intent = new Intent(mContext, CookProfileActivity.class);
+                intent.putExtra("cookId", cook.cookId);
+                intent.putExtra("cookName", cook.name);
+                intent.putExtra("cookPhoto", cook.photo);
+                mContext.startActivity(intent);
+            }
+        });
         return holder;
     }
 

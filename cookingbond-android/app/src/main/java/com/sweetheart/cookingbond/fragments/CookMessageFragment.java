@@ -63,7 +63,7 @@ public class CookMessageFragment extends Fragment {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             final User customer = dataSnapshot.getValue(User.class);
                             DatabaseReference msgRef = FirebaseDatabase.getInstance().getReference("messages/" + conversationId);
-                            msgRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                            msgRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
