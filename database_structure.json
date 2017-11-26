@@ -12,7 +12,7 @@
             "ratingCook": 0,
             "ratingEater": 0,
             "transactions": ["tid1", "tid2"],
-            "notifications": {
+            "notificationTokens": {
                 "tokens1": true,
                 "tokens2": true
             }
