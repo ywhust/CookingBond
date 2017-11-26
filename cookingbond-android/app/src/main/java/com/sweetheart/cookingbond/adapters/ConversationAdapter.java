@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.sweetheart.cookingbond.ChatActivity;
 import com.sweetheart.cookingbond.R;
 import com.sweetheart.cookingbond.classes.Conversation;
@@ -75,8 +79,8 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         holder.name.setText(conversation.contactName);
         holder.message.setText(conversation.lastMessage);
         holder.time.setText(conversation.lastContactTime);
-//        StorageReference imageRef = FirebaseStorage.getInstance().getReference(contact.photo);
-//        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.photo);
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference(conversation.contactPhoto);
+        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.photo);
     }
 
     @Override

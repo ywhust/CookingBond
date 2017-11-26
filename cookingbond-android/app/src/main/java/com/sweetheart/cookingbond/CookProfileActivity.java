@@ -63,9 +63,9 @@ public class CookProfileActivity extends AppCompatActivity {
         }
         collapsingToolbar.setTitle(mCookName);
 
-        // ImageView cookImage = (ImageView) findViewById(R.id.cook_profile_image_view);
-        // StorageReference imageRef = FirebaseStorage.getInstance().getReference(mCookPhoto);
-        // Glide.with(this).using(new FirebaseImageLoader()).load(imageRef).into(cookImage);
+        ImageView cookImage = (ImageView) findViewById(R.id.cook_profile_image_view);
+        StorageReference imageRef = FirebaseStorage.getInstance().getReference(mCookPhoto);
+        Glide.with(this).using(new FirebaseImageLoader()).load(imageRef).into(cookImage);
 
         mDishList = new ArrayList<>();
         mAdapter = new CookDishAdapter(mDishList);

@@ -69,6 +69,7 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
         statusRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() == null) return;
                 Set<String> set = ((HashMap<String, String>) dataSnapshot.getValue()).keySet();
                 Dish dish = mDishList.get(holder.getAdapterPosition());
                 if (set.contains(dish.dishId)) {

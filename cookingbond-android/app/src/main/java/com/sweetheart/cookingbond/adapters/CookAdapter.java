@@ -88,8 +88,8 @@ public class CookAdapter extends RecyclerView.Adapter<CookAdapter.ViewHolder> {
         holder.cookName.setText(cook.name);
         String labels = cook.labels.toString();
         holder.cookLabel.setText(labels.substring(1, labels.length() - 1));
-        // StorageReference photoRef = FirebaseStorage.getInstance().getReference(cook.photo);
-        // Glide.with(mContext).using(new FirebaseImageLoader()).load(photoRef).into(holder.imageView);
+        StorageReference photoRef = FirebaseStorage.getInstance().getReference(cook.photo);
+        Glide.with(mContext).using(new FirebaseImageLoader()).load(photoRef).into(holder.imageView);
 
         // set the dish pictures
         final ViewHolder h = holder;
