@@ -27,10 +27,10 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by ywu on 11/23/17.
+ * Created by ywu on 11/25/17.
  */
 
-public class CookMessageFragment extends Fragment {
+public class EaterMessageFragment extends Fragment {
     private List<Conversation> mConversationList;
     private HashMap<String, Conversation> mMap;
 
@@ -39,7 +39,7 @@ public class CookMessageFragment extends Fragment {
     private FirebaseUser mUser;
     private DatabaseReference mConversationRef;
 
-    public CookMessageFragment() {}
+    public EaterMessageFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class CookMessageFragment extends Fragment {
 
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         if (mUser != null) {
-            mConversationRef = FirebaseDatabase.getInstance().getReference("contacts_cook/" + mUser.getUid());
+            mConversationRef = FirebaseDatabase.getInstance().getReference("contacts_eater/" + mUser.getUid());
             mConversationRef.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -63,7 +63,7 @@ public class CookMessageFragment extends Fragment {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             final User customer = dataSnapshot.getValue(User.class);
                             DatabaseReference msgRef = FirebaseDatabase.getInstance().getReference("messages/" + conversationId);
-                            msgRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                            msgRef.orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
@@ -122,7 +122,7 @@ public class CookMessageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_cook_message, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_eater_message, container, false);
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.message_content);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
