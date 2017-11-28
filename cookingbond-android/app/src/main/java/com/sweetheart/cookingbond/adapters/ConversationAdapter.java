@@ -79,8 +79,10 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         holder.name.setText(conversation.contactName);
         holder.message.setText(conversation.lastMessage);
         holder.time.setText(conversation.lastContactTime);
-        StorageReference imageRef = FirebaseStorage.getInstance().getReference(conversation.contactPhoto);
-        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.photo);
+        if (conversation.contactPhoto != null) {
+            StorageReference imageRef = FirebaseStorage.getInstance().getReference(conversation.contactPhoto);
+            Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.photo);
+        }
     }
 
     @Override

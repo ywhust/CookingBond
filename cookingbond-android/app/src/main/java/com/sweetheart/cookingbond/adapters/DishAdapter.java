@@ -106,8 +106,10 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Dish dish = mDishList.get(position);
         holder.dishName.setText(dish.name);
-        StorageReference imageRef = FirebaseStorage.getInstance().getReference(dish.picture);
-        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.dishImage);
+        if (dish.picture != null) {
+            StorageReference imageRef = FirebaseStorage.getInstance().getReference(dish.picture);
+            Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.dishImage);
+        }
     }
 
     @Override

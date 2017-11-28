@@ -19,13 +19,17 @@ public class User {
     public String photo;
     public String lastStatus;
     public double ratingCook;
+    public int tCompleteCook;
     public double ratingEater;
+    public int tCompleteEater;
     public List<String> transactions;
+    public Map<String, String> notificationTokens;
 
     public User() {}
 
     public User(String name, String gender, int age, String email, String phone, String photo,
-                String lastStatus, double ratingCook, double ratingEater, List<String> transactions) {
+                String lastStatus, double ratingCook, int tCompleteCook, double ratingEater,
+                int tCompleteEater, List<String> transactions, Map<String, String> notificationTokens) {
         this.name = name;
         this.gender = gender;
         this.age = age;
@@ -34,8 +38,11 @@ public class User {
         this.photo = photo;
         this.lastStatus = lastStatus;
         this.ratingCook = ratingCook;
+        this.tCompleteCook = tCompleteCook;
         this.ratingEater = ratingEater;
+        this.tCompleteEater = tCompleteEater;
         this.transactions = transactions;
+        this.notificationTokens = notificationTokens;
     }
 
     @Exclude
@@ -49,8 +56,11 @@ public class User {
         result.put("photo", photo);
         result.put("lastStatus", lastStatus);
         result.put("ratingCook", ratingCook);
+        result.put("tCompleteCook", tCompleteCook);
         result.put("ratingEater", ratingEater);
+        result.put("tCompleteEater", tCompleteEater);
         result.put("transactions", transactions);
+        result.put("notificationTokens", notificationTokens);
         return result;
     }
 }

@@ -15,7 +15,8 @@ public class Cook extends User {
 
     public Cook(User user, String cookId, List<String> labels, List<String> dishes) {
         super(user.name, user.gender, user.age, user.email, user.phone, user.photo,
-                user.lastStatus, user.ratingCook, user.ratingEater, user.transactions);
+                user.lastStatus, user.ratingCook, user.tCompleteCook, user.ratingEater,
+                user.tCompleteEater, user.transactions, user.notificationTokens);
         this.cookId = cookId;
         this.labels = labels;
         this.dishes = dishes;

@@ -64,8 +64,10 @@ public class CookDishAdapter extends RecyclerView.Adapter<CookDishAdapter.ViewHo
         holder.dishName.setText("Dish name: " + dish.name);
         holder.dishPrice.setText("Price: $" + String.valueOf(dish.price));
         holder.dishFlavor.setText("Flavor: " + dish.flavor);
-        StorageReference imageRef = FirebaseStorage.getInstance().getReference(dish.picture);
-        Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.dishImage);
+        if (dish.picture != null) {
+            StorageReference imageRef = FirebaseStorage.getInstance().getReference(dish.picture);
+            Glide.with(mContext).using(new FirebaseImageLoader()).load(imageRef).into(holder.dishImage);
+        }
     }
 
     @Override

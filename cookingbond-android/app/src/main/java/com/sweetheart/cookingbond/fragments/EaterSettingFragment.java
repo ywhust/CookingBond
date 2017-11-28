@@ -93,8 +93,10 @@ public class EaterSettingFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 name.setText(user.name);
-                StorageReference imageRef = FirebaseStorage.getInstance().getReference(user.photo);
-                Glide.with(getActivity()).using(new FirebaseImageLoader()).load(imageRef).into(photo);
+                if (user.photo != null) {
+                    StorageReference imageRef = FirebaseStorage.getInstance().getReference(user.photo);
+                    Glide.with(getActivity()).using(new FirebaseImageLoader()).load(imageRef).into(photo);
+                }
             }
 
             @Override

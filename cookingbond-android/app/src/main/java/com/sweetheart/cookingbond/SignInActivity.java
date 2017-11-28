@@ -81,7 +81,7 @@ public class SignInActivity extends AppCompatActivity {
                     DatabaseReference userRef = FirebaseDatabase.getInstance()
                             .getReference("/users/" + user.getUid());
                     if (token != null) {
-                        userRef.child("notificationTokens").child(token).setValue(true);
+                        userRef.child("notificationTokens").child(token).setValue("true");
                     }
                     userRef.child("lastStatus").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
