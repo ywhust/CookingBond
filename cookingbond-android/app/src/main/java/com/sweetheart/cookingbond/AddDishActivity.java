@@ -66,8 +66,8 @@ public class AddDishActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Add dish");
         }
-        actionBar.setTitle("Add dish");
 
         mName = (EditText) findViewById(R.id.add_dish_name);
         mFlavor = (EditText) findViewById(R.id.add_dish_flavor);
@@ -119,7 +119,7 @@ public class AddDishActivity extends AppCompatActivity {
 
             // Post the new created dish to Firebase Database
             String pictureUrl = "images/dishes/" + key + "/"
-                    + replaceSpace(mName.getText().toString()) + ".jpg" ;
+                    + mName.getText().toString() + ".jpg" ;
             Dish dish = new Dish(userId,
                                  mName.getText().toString(),
                                  mFlavor.getText().toString(),
@@ -174,12 +174,12 @@ public class AddDishActivity extends AppCompatActivity {
         });
     }
 
-    private String replaceSpace(String str) {
-        String[] sArr = str.split(" ");
-        String res = sArr[0];
-        for (int i = 1; i < sArr.length; i++) {
-            res = res + "_" + sArr[i];
-        }
-        return res;
-    }
+//    private String replaceSpace(String str) {
+//        String[] sArr = str.split(" ");
+//        String res = sArr[0];
+//        for (int i = 1; i < sArr.length; i++) {
+//            res = res + "_" + sArr[i];
+//        }
+//        return res;
+//    }
 }

@@ -1,6 +1,7 @@
 package com.sweetheart.cookingbond;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,8 +45,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
 
         Intent intent = getIntent();
         mConversationId = intent.getStringExtra("conversationId");
@@ -54,7 +54,10 @@ public class ChatActivity extends AppCompatActivity {
         mContactName = intent.getStringExtra("contactName");
         mContactPhoto = intent.getStringExtra("contactPhoto");
 
-        getSupportActionBar().setTitle(mContactName);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(mContactName);
+        }
 
         mMessageRef = FirebaseDatabase.getInstance().getReference("messages/" + mConversationId);
 
