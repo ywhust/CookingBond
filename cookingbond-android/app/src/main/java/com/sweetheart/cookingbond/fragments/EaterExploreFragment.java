@@ -58,15 +58,21 @@ public class EaterExploreFragment extends Fragment {
                     HashMap<String, Object> map = (HashMap<String, Object>) dataSnapshot.getValue();
                     if (map.get("availableStatus").equals("true")) {
                         final List<String> dishIdList = new ArrayList<>(((Map) map.get("availableDishes")).keySet());
-                        List<String> temp = (List<String>) map.get("label");
-                        final List<String> labels = new ArrayList<>(temp);
+                        final List<String> temp = (List<String>) map.get("label");
+//                        final List<String> labels = new ArrayList<>(temp);
                         DatabaseReference userRef = FirebaseDatabase.getInstance()
                                 .getReference("users/" + cookId);
                         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 User user = dataSnapshot.getValue(User.class);
-                                Cook cook = new Cook(user, cookId, labels, dishIdList);
+                                Cook cook;
+                                if (temp == null) {
+                                    cook = new Cook(user, cookId, new ArrayList<String>(), dishIdList);
+                                } else {
+                                    cook = new Cook(user, cookId, new ArrayList<String>(temp), dishIdList);
+                                }
+//                                Cook cook = new Cook(user, cookId, new ArrayList<String>(), dishIdList);
                                 mCookList.add(cook);
                                 mAdapter.notifyItemInserted(mCookList.size() - 1);
                             }

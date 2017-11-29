@@ -26,6 +26,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private String mConversationId;
     private String mMyId;
+    private String mMyPhoto;
     private String mContactId;
     private String mContactName;
     private String mContactPhoto;
@@ -63,7 +64,7 @@ public class ChatActivity extends AppCompatActivity {
 
         // display recycler view
         mMessageList = new ArrayList<>();
-        mAdapter = new MessageAdapter(mMessageList, mMyId);
+        mAdapter = new MessageAdapter(mMessageList, mMyId, mMyPhoto, mContactPhoto);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);

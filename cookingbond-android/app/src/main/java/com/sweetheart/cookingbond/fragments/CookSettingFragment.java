@@ -112,6 +112,9 @@ public class CookSettingFragment extends Fragment {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DatabaseReference cookRef = FirebaseDatabase.getInstance()
+                        .getReference("cooks/" + mUser.getUid() + "/availableStatus");
+                cookRef.setValue("false");
                 mUserRef.child("lastStatus").setValue("eater");
                 startActivity(new Intent(getActivity(), EaterMainActivity.class));
             }
