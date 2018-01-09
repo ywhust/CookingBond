@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Show Food </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/basic.css">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+        authDomain: "toycookingbond.firebaseapp.com",
+        databaseURL: "https://toycookingbond.firebaseio.com",
+        projectId: "toycookingbond",
+        storageBucket: "toycookingbond.appspot.com",
+        messagingSenderId: "409633326218"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <div class = "form">
+      <header>
+        <button type="button" id="btnBack" class="btn btn-light">
+          BACK
+        </button>
+        <div class = "title">
+          COOK PROFILE
+        </div>
+        <nav>
+          <ul>
+            <li><a></a></li>
+            <li><a>CHATTING</a></li>
+            <li><a>HISTORY</a></li>
+            <li><a>SETTING</a></li>
+          </ul>
+        </nav>
+      </header>
+          <div class = "container">
+            <div id="cookWindow">
+              <br/>
+
+              <!-- <div class = "row" id = uid>
+                <div class = "col-12 textLeft darkyellow">
+                  <h5> Bowen Yang </h5>
+                </div>
+                <div class="col-5">
+                 <img src = images/profile.jpg height = 100% width = 130px verticalAlign = middle/>
+                </div>
+                <div class="col-7 textLeft">
+                  <div class = "row">
+                    gender: gender
+                  </div>
+                  <div class = "row">
+                    rating: rating
+                  </div>
+                  <div class = "row">
+                  <button type='button' class='btn btn-info btnSendRequest' value = uid> Chatting </button>
+                  </div>
+                </div>
+              </div>
+ -->
+            </div>
+
+            <br/>
+            <div class = "row">
+              <h5> Menu </h5>
+            </div>
+
+            <div id="foodWindow">
+
+              <!-- <div class='row rowShowDish' id = didDish>
+                    <div class='col-5'>
+                      <img src = images/profile.jpg id = did height = 100% width = 130px/>
+                    </div>
+                    <div class = "col-7 textLeft yellow">
+                      <div class = "row darkyellow">
+                      <h5> Name </h5>
+                      </div>
+                      <div class = "row">
+                      Price : 12 <br/>
+                      Flavor: American
+                      </div>
+                    </div>
+                  </div> -->
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src = "scripts/prepareNav.js"></script>
+    <script type="text/javascript" src = "scripts/cookProfile.js"></script>
+  </body>
+</html>

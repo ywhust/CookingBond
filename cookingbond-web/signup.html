@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> SignUp Page </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/basic.css">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+        authDomain: "toycookingbond.firebaseapp.com",
+        databaseURL: "https://toycookingbond.firebaseio.com",
+        projectId: "toycookingbond",
+        storageBucket: "toycookingbond.appspot.com",
+        messagingSenderId: "409633326218"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+  </head>
+  <body>
+    <div class = form>
+      <header>
+        <div class = "title">
+          <button type="button" id="btnBack" class="btn btn-light">
+            Back
+          </button>
+          SIGN UP
+        </div>
+      </header>
+      <div class="container">
+        <br/>
+        <img src="images/profile.jpg" height = 50% width = 50%/> <br/>
+        <br/>
+        <br/>
+        <form name="register-form" id="register-form">
+           <progress value="0" max="100" id="uploader">0%</progress> <br/>
+            <input name="photo" id="photo" type="file" accept="image/*,capture=camera"/> <br>
+            <input name="name" type="text" placeholder="Name" /> <br/>
+            <input class="specialInput" name="gender" type="radio" value ="male" checked />
+            <label>Male</label>
+            <input class="specialInput" name="gender" type="radio" value ="female"/>
+            <label>Female</label>
+            <input name="age" type="number" placeholder="Age" min = "0" max = "150"/> <br/>
+            <input name="phone" type="text" placeholder="Phone Number"/> <br/>
+            <input name="email" type="email" placeholder="Email"/> <br/>
+            <input name="pswrd" type="password" placeholder="Password"/> <br/>
+
+        </form>
+        <p>Already registered? <a href=index.html>Log In</a></p>
+        <button type="button" id="btnRegister" class="btn btn-info">
+          CREATE ACCOUNT
+        </button> <br>
+
+      </div>
+    </div>
+    <script type="text/javascript" src = "scripts/register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> Show Food </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/basic.css">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+        authDomain: "toycookingbond.firebaseapp.com",
+        databaseURL: "https://toycookingbond.firebaseio.com",
+        projectId: "toycookingbond",
+        storageBucket: "toycookingbond.appspot.com",
+        messagingSenderId: "409633326218"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <div class = "form">
+      <header>
+        <div class = "title">
+          MY KITCHEN
+        </div>
+        <nav>
+          <ul>
+            <li><a>DISH</a></li>
+            <li><a>CHATTING</a></li>
+            <li><a>HISTORY</a></li>
+            <li><a>SETTING</a></li>
+          </ul>
+        </nav>
+      </header>
+          <div class = "container">
+            <div id="foodWindow">
+                  <br/>
+
+                  <!-- <div class='row rowShowDish' id = didDish>
+                    <div class='col-5'>
+                      <img src = images/profile.jpg id = did height = 100% width = 130px/>
+                    </div>
+                    <div class = "col-7 textLeft yellow">
+                      <div class = "row darkyellow">
+                      <h5> Name </h5>
+                      </div>
+                      <div class = "row">
+                      Add to menu? <br/>
+                      Price : 12 <br/>
+                      Flavor: American
+                      <input class=specialInput type = checkbox value = flavor name =name id =did>
+                      <div class = "row">
+                      <button type='button' class='btn btn-info btnDeleteDish' value = did> Delete </button>
+                      <button type='button' class='btn btn-info btnModifyDish' value = did> Modify </button>
+                      </div>
+                      </div>
+                    </div>
+                  </div> -->
+
+            </div>
+
+          <button type="button" class="btn btn-info" id="btnAddDish">
+            Add Dish
+          </button>
+
+          <button type="button" class="btn btn-info" id="btnAvailable">
+            Available Now!
+          </button>
+
+        </div>
+    </div>
+    <script type="text/javascript" src = "scripts/showFood.js"></script>
+    <script type="text/javascript" src = "scripts/prepareNav.js"></script>
+  </body>
+</html>

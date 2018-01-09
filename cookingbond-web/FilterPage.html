@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title> Filter </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/basic.css">
+  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+  <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3yRSR1oflcs5UFZ9i1CnrpycubavL7QE&libraries=geometry"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+      authDomain: "toycookingbond.firebaseapp.com",
+      databaseURL: "https://toycookingbond.firebaseio.com",
+      projectId: "toycookingbond",
+      storageBucket: "toycookingbond.appspot.com",
+      messagingSenderId: "409633326218"
+    };
+    firebase.initializeApp(config);
+  </script>
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="form">
+    <header>
+      <div class = "title">
+        <button type="button" id="btnMap" class="btn btn-light">
+            MAP
+        </button>
+        FILTER
+      </div>
+        <nav>
+          <ul>
+            <li><a></a></li>
+            <li><a>CHATTING</a></li>
+            <li><a>HISTORY</a></li>
+            <li><a>SETTING</a></li>
+          </ul>
+        </nav>
+    </header>
+
+  <div class = "container">
+    <br/>
+    <div class = "row textLeft">
+      <div class = "col-6">
+        <label for="Distance">Distance:</label> <br/>
+      </div>
+      <div class = "col-6">
+        <select id="Distance" name="distance">
+          <option value="">Any</option>
+          <option value="0-3">0-3 miles</option>
+          <option value="3-5">3-5 miles</option>
+          <option value="5-10">5-10 miles</option>
+          <option value=">10">>10 miles</option>
+        </select> <br/>
+      </div>
+    </div>
+
+    <div class ="row textLeft">
+      <div class = "col-6">
+        <label for="Flavor">Flavor:</label> <br/>
+      </div>
+      <div class = "col-6">
+        <select id="Flavor" name="flavor">
+            <option value="">Any</option>
+            <option value="American">American</option>
+            <option value="Chinese">Chinese</option>
+            <option value="Itanlian">Itanlian</option>
+            <option value="Mexican">Mexican</option>
+            <option value="Japaness">Japaness</option>
+            <option value="Korean">Korean</option>
+            <option value="Vietnamese">Vietnamese</option>
+            <option value="Others">Others</option>
+          </select> <br/>
+      </div>
+    </div>
+
+    <div class ="row textLeft">
+      <div class = "col-6">
+        <label for="Price">Price: </label> <br/>
+      </div>
+      <div class = "col-6">
+        <select id="Price" name="price">
+            <option value="">Any</option>
+            <option value="$">$</option>
+            <option value="$$">$$</option>
+            <option value="$$$">$$$</option>
+          </select> <br/>
+      </div>
+    </div>
+
+    <div class ="row textLeft">
+      <div class = "col-6">
+         <label for="Age">Age:</label> <br/>
+      </div>
+      <div class = "col-6">
+         <select id="Age" name="age">
+            <option value="">Any</option>
+            <option value="18-22">18-22</option>
+            <option value="23-27">23-27</option>
+            <option value="28-32">28-32</option>
+            <option value="33-37">33-37</option>
+            <option value=">38">>38</option>
+          </select> <br/>
+      </div>
+    </div>
+
+    <div class ="row textLeft">
+      <div class = "col-6">
+         <label for="Gender">Gender:</label> <br/>
+      </div>
+      <div class = "col-6">
+        <select id="Gender" name="gender">
+            <option value="">Any</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select> <br/>
+      </div>
+    </div>
+
+     <br>
+      <button type="button" class = "btn btn-info" onclick="onChange()">Filter</button>
+     <br/>
+
+    	<!-- <div class="select textLeft">
+    		<label for="Distance">Distance: <select id="Distance" name="distance">
+      			<option value="">Any</option>
+      			<option value="0-3">0-3 miles</option>
+      			<option value="3-5">3-5 miles</option>
+      			<option value="5-10">5-10 miles</option>
+      			<option value=">10">>10 miles</option>
+      		</label></select>
+        </div>
+    	<div class="select textLeft">
+      		<label for="Flavor">Flavor: <select id="Flavor" name="flavor">
+      			<option value="">Any</option>
+      			<option value="American">American</option>
+      			<option value="Chinese">Chinese</option>
+      			<option value="Itanlian">Itanlian</option>
+      			<option value="Mexican">Mexican</option>
+      			<option value="Japaness">Japaness</option>
+      			<option value="Korean">Korean</option>
+      			<option value="Vietnamese">Vietnamese</option>
+      			<option value="Others">Others</option>
+      		</label></select>
+    	</div>
+    	<div class="select textLeft">
+      		<label for="Price">Price: <select id="Price" name="price">
+      			<option value="">Any</option>
+      			<option value="$">$</option>
+      			<option value="$$">$$</option>
+      			<option value="$$$">$$$</option>
+      		</label></select>
+    	</div>
+    	<div class="select textLeft">
+      		<label for="Age">Age: <select id="Age" name="age">
+      			<option value="">Any</option>
+      			<option value="18-22">18-22</option>
+      			<option value="23-27">23-27</option>
+      			<option value="28-32">28-32</option>
+      			<option value="33-37">33-37</option>
+      			<option value=">38">>38</option>
+      		</select></label>
+    	</div>
+    	<div class="select textLeft">
+      		<label for="Gender">Gender: <select id="Gender" name="gender">
+            <option value="">Any</option>
+      			<option value="Male">Male</option>
+      			<option value="Female">Female</option>
+      		</label></select>
+    	</div> -->
+
+       <div class = cookWindow id = result>
+         <br/>
+
+         <!-- <div class='row rowShowCook' id = uid>
+          <div class='col-5'>
+            <img src = images/profile.jpg height = 100% width = 130px/>
+          </div>
+          <div class = "col-7 textLeft yellow">
+            <div class = "row darkyellow">
+            <h5> Name </h5>
+            </div>
+            <br/>
+            <button type='button' class='btn btn-info btnMoreInfo' value = uid center> More Information </button>
+          </div> -->
+
+        </div>
+
+       </div>
+      </div>
+</div>
+
+<script src="./scripts/prepareNav.js"></script>
+<script src="./scripts/Filter.js"></script>
+</body>
+
+</html>

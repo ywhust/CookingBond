@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 450px;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/basic.css">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3yRSR1oflcs5UFZ9i1CnrpycubavL7QE&libraries=places&callback=initMap"
+    async defer></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+        authDomain: "toycookingbond.firebaseapp.com",
+        databaseURL: "https://toycookingbond.firebaseio.com",
+        projectId: "toycookingbond",
+        storageBucket: "toycookingbond.appspot.com",
+        messagingSenderId: "409633326218"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+    <div class = form>
+      <header>
+        <div class = "title">
+          <button type="button" id="btnBack" class="btn btn-light">
+            Back
+          </button>
+          Map
+        </div>
+      </header>
+      <div class="container">
+      <input class="specialInput" name="location" type="radio" value ="cur" checked />
+      <label>Current Location</label>
+      <input class="specialInput" name="location" type="radio" value ="customize"/>
+      <label>Enter your address: </label>
+      <input name="address" placeholder="Enter your address" type="text" disabled="true"></input>
+      <div id="map"></div>
+      <button type="button" id="btnSubmitLoc" class="btn btn-info">
+          Submit
+      </button> <br>
+     </div>
+    </div>
+    <script type="text/javascript" src = "scripts/map.js"></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title> View </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/basic.css">
+    <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+    <script type="text/javascript" src = "scripts/jquery-3.2.1.min.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBIDMqC6vofhu5kyBxBgllrvR9sQ2hmS3M",
+        authDomain: "toycookingbond.firebaseapp.com",
+        databaseURL: "https://toycookingbond.firebaseio.com",
+        projectId: "toycookingbond",
+        storageBucket: "toycookingbond.appspot.com",
+        messagingSenderId: "409633326218"
+      };
+      firebase.initializeApp(config);
+    </script>
+  </head>
+  <body>
+     <div class = "form">
+      <header>
+        <div class = "title">
+          <button type="button" id="btnBack" class="btn btn-light">
+          Back
+          </button>
+          View
+      </header>
+      <div class = "container">
+        <div class = "content">
+            <form name="transaction-form" id="transaction-form">
+              <label>Cook Name: <input name="cookName" type="text" placeholder="Name" /></label> <br/>
+              <label> Eater Name: <input name="eaterName" type="text" placeholder="Name" /> </label><br/>
+              <label> Dish: <input name="dish" type="text" placeholder="Dish"/> </label>
+              <br/>
+              <label>Time: <input name="time" type="text"/></label> <br/>
+              <label>Amount: <input name="amount" type="number" placeholder="Transaction Amount" min="0" /></label><br/>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src = "scripts/view.js"></script>
+  </body>
+</html>
